@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isNotBanned() {
+      let userPath = /databases/$(database)/documents/users/$(request.auth.uid);
+      return !exists(userPath) || get(userPath).data.isBanned != true;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    function isAuthor(authorUid) {
+      return isSignedIn() && request.auth.uid == authorUid;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      // Profiles are public - allows profile.html to load instantly
+      allow read: if true;
+      // Users can manage their own data
+      allow write: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Categories collection (read-only for all authenticated users, write only by admins)
+    match /categories/{categoryId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && 
+                      get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Topics collection
+    match /topics/{topicId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && 
+                       isNotBanned() &&
+                       request.resource.data.author_uid == request.auth.uid &&
+                       request.resource.data.title is string &&
+                       request.resource.data.category_id is string;
+      allow update: if isSignedIn() && 
+                       (isAuthor(resource.data.author_uid) || 
+                        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
+      allow delete: if isSignedIn() && 
+                       (isAuthor(resource.data.author_uid) || 
+                        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
+    }
+
+    // Posts collection
+    match /posts/{postId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && 
+                       isNotBanned() &&
+                       request.resource.data.author_uid == request.auth.uid &&
+                       request.resource.data.topic_id is string &&
+                       request.resource.data.content is string;
+      allow update: if isSignedIn() && 
+                       (isAuthor(resource.data.author_uid) || 
+                        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
+      allow delete: if isSignedIn() && 
+                       (isAuthor(resource.data.author_uid) || 
+                        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
+    }
+  }
+}

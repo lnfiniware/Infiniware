@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>verify email - infiniware</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+
+  <body>
+    <div class="flex-center">
+      <div class="auth-card card text-center">
+        <div class="text-center mb-lg">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            "
+          >
+            <div class="logo-text" style="font-size: 1.8rem"><span>I</span>nfiniware</div>
+            <button
+              class="theme-toggle-btn"
+              aria-label="toggle theme"
+              style="margin-left: 10px"
+            ></button>
+          </div>
+          <svg
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
+              fill="#E31E24"
+            />
+          </svg>
+        </div>
+
+        <h2 class="mb-md">verify your email</h2>
+        <p class="text-dim">
+          we sent a verification link to your inbox. please click it to activate your account.
+        </p>
+
+        <div
+          class="mt-md mb-md"
+          style="
+            padding: 12px;
+            background: rgba(227, 30, 36, 0.1);
+            border: 1px solid rgba(227, 30, 36, 0.3);
+            border-radius: 4px;
+          "
+        >
+          <p class="text-white" style="font-size: 0.85rem; margin: 0">
+            <strong>email sent from:</strong> noreply@infiniware.bid
+          </p>
+          <p id="email-address" class="text-dim" style="font-size: 0.8rem; margin: 5px 0 0 0"></p>
+        </div>
+
+        <div class="divider my-lg"></div>
+
+        <p id="status-msg" class="text-white" style="font-size: 0.9rem">
+          waiting for verification...
+        </p>
+
+        <div class="flex-col gap-md mt-lg">
+          <button id="check-btn" class="btn btn-red" style="width: 100%">i've verified it</button>
+          <button id="resend-btn" class="btn btn-ghost" style="width: 100%">resend email</button>
+        </div>
+
+        <div class="mt-lg">
+          <a
+            href="#"
+            id="logout-btn"
+            class="text-dim"
+            style="font-size: 0.8rem; text-decoration: underline"
+            >sign out</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { auth } from './firebase-init.js'
+      import { signOut } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js'
+      import {
+        initAuthListener,
+        resendVerificationEmail,
+        sendVerificationEmailNow
+      } from './auth.js'
+
+      const statusMsg = document.getElementById('status-msg')
+      const checkBtn = document.getElementById('check-btn')
+      const resendBtn = document.getElementById('resend-btn')
+      const logoutBtn = document.getElementById('logout-btn')
+
+      let checkInterval
+      let didSendOnLoad = false
+
+      initAuthListener(async (user) => {
+        if (!user) {
+          window.location.href = 'signin.html'
+          return
+        }
+
+        // Show user's email address
+        const emailAddressEl = document.getElementById('email-address')
+        if (emailAddressEl && user.email) {
+          emailAddressEl.textContent = `check your inbox at: ${user.email}`
+        }
+
+        if (user.emailVerified) {
+          statusMsg.textContent = 'verified! redirecting...'
+          setTimeout(() => {
+            window.location.href = 'dashboard.html'
+          }, 1000)
+        } else {
+          startPolling(user)
+          // Send verification email once when landing on this page (in case signup send didn't fire)
+          if (!didSendOnLoad) {
+            didSendOnLoad = true
+            try {
+              statusMsg.textContent = 'sending verification email...'
+              await sendVerificationEmailNow(user)
+              statusMsg.textContent = 'verification email sent. check your inbox.'
+              statusMsg.style.color = 'var(--clr-red-accent)'
+              setTimeout(() => {
+                statusMsg.textContent = 'waiting for verification...'
+                statusMsg.style.color = 'var(--clr-white)'
+              }, 4000)
+            } catch (err) {
+              console.error('Send on load:', err)
+              statusMsg.textContent = 'waiting for verification...'
+            }
+          }
+        }
+      })
+
+      function startPolling(user) {
+        checkInterval = setInterval(async () => {
+          try {
+            await user.reload()
+            const currentUser = auth.currentUser
+            if (currentUser && currentUser.emailVerified) {
+              clearInterval(checkInterval)
+              statusMsg.textContent = 'verified! redirecting...'
+              statusMsg.style.color = 'var(--clr-red-accent)'
+              setTimeout(() => {
+                window.location.href = 'dashboard.html'
+              }, 1000)
+            }
+          } catch (error) {
+            console.error('Error checking verification:', error)
+          }
+        }, 2000) // Check every 2 seconds
+      }
+
+      checkBtn.addEventListener('click', async () => {
+        const currentUser = auth.currentUser
+        if (!currentUser) {
+          window.location.href = 'signin.html'
+          return
+        }
+
+        try {
+          checkBtn.disabled = true
+          checkBtn.textContent = 'checking...'
+          await currentUser.reload()
+
+          if (currentUser.emailVerified) {
+            statusMsg.textContent = 'verified! redirecting...'
+            statusMsg.style.color = 'var(--clr-red-accent)'
+            setTimeout(() => {
+              window.location.href = 'dashboard.html'
+            }, 1000)
+          } else {
+            statusMsg.textContent = 'not verified yet. please check your email.'
+            statusMsg.style.color = 'var(--clr-gray-dim)'
+            checkBtn.disabled = false
+            checkBtn.textContent = "i've verified it"
+          }
+        } catch (error) {
+          console.error('Error checking verification:', error)
+          statusMsg.textContent = 'error checking status. please try again.'
+          statusMsg.style.color = 'var(--clr-red-accent)'
+          checkBtn.disabled = false
+          checkBtn.textContent = "i've verified it"
+        }
+      })
+
+      resendBtn.addEventListener('click', async () => {
+        const currentUser = auth.currentUser
+        if (!currentUser) {
+          window.location.href = 'signin.html'
+          return
+        }
+
+        try {
+          resendBtn.disabled = true
+          resendBtn.textContent = 'sending...'
+          await resendVerificationEmail()
+
+          statusMsg.textContent = 'verification email resent! check your inbox.'
+          statusMsg.style.color = 'var(--clr-red-accent)'
+          resendBtn.textContent = 'email sent!'
+          resendBtn.style.opacity = '0.7'
+
+          setTimeout(() => {
+            resendBtn.textContent = 'resend email'
+            resendBtn.disabled = false
+            resendBtn.style.opacity = '1'
+            statusMsg.textContent = 'waiting for verification...'
+            statusMsg.style.color = 'var(--clr-white)'
+          }, 5000)
+        } catch (e) {
+          console.error(e)
+          if (e.code === 'auth/too-many-requests') {
+            statusMsg.textContent = 'too many requests. please wait a moment.'
+            statusMsg.style.color = 'var(--clr-red-accent)'
+          } else {
+            statusMsg.textContent = 'failed to send email. please try again.'
+            statusMsg.style.color = 'var(--clr-red-accent)'
+          }
+          resendBtn.textContent = 'resend email'
+          resendBtn.disabled = false
+        }
+      })
+
+      logoutBtn.addEventListener('click', async (e) => {
+        e.preventDefault()
+        await signOut(auth)
+        window.location.href = 'signin.html'
+      })
+    </script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

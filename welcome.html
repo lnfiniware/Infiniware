@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>welcome // infiniware</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .welcome-hero {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .reveal-delay {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 0.2s;
+      }
+
+      .delay-2 {
+        animation-delay: 0.4s;
+      }
+
+      .delay-3 {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes revealUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+      </div>
+      <div class="nav-extras">
+        <button class="theme-toggle-btn" aria-label="toggle theme"></button>
+        <button class="mobile-menu-btn">☰</button>
+      </div>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">home</a>
+          <a href="products.html" class="nav-link">products</a>
+          <a href="blog.html" class="nav-link">blog</a>
+          <a href="dashboard.html" class="nav-link">community</a>
+          <a href="connect.html" class="nav-link">connect</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="welcome-hero">
+        <h2 class="cursive-accent reveal-delay delay-1">identity confirmed</h2>
+        <h1 class="reveal-delay delay-2">welcome to the infrastructure</h1>
+        <p class="text-dim reveal-delay delay-3" style="max-width: 600px; margin: 20px auto">
+          your account has been successfully structurally integrated. you now have full access to
+          the infiniware community, project logs, and the guardian-protected feed.
+        </p>
+        <div class="mt-xl reveal-delay delay-3" style="animation-delay: 0.8s">
+          <a href="dashboard.html" class="btn">enter community feed</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-text"><span>I</span>nfiniware</div>
+          <p class="text-dim" style="max-width: 250px; font-size: 0.85rem">
+            an independent ecosystem building tools with intention and structural focus.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>platform</h4>
+            <div class="footer-item">
+              <a href="manifesto.html" class="footer-link">manifesto</a>
+            </div>
+            <div class="footer-item">
+              <a href="faq.html" class="footer-link">faq</a>
+            </div>
+            <div class="footer-item">
+              <a href="dashboard.html" class="footer-link">community hub</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>legal</h4>
+            <div class="footer-item">
+              <a href="privacy.html" class="footer-link">privacy policy</a>
+            </div>
+            <div class="footer-item">
+              <a href="license.html" class="footer-link">license</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>support</h4>
+            <div class="footer-item">
+              <a href="mailto:support@infiniware.bid" class="footer-link">support@infiniware.bid</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>infiniware © 2026</span>
+        <span>crafted by human hand</span>
+      </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

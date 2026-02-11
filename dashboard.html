@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>community — infiniware</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+      </div>
+      <div class="nav-extras">
+        <button class="theme-toggle-btn" aria-label="toggle theme"></button>
+        <button class="mobile-menu-btn">☰</button>
+      </div>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">home</a>
+          <a href="products.html" class="nav-link">products</a>
+          <a href="blog.html" class="nav-link">blog</a>
+          <a href="docs.html" class="nav-link">docs</a>
+          <a href="dashboard.html" class="nav-link active">community</a>
+          <a href="connect.html" class="nav-link">connect</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="dash-wrapper">
+      <!-- Banned overlay -->
+      <div id="banned-overlay" class="banned-overlay" style="display: none">
+        <div class="card text-center">
+          <h2 class="text-red mb-md">access restricted</h2>
+          <p class="text-dim">your account has been suspended by the guardian system.</p>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div
+        id="dash-loading"
+        class="flex-center"
+        style="height: 100vh; flex-direction: column; gap: 20px"
+      >
+        <div class="loading-spinner"></div>
+        <p class="text-dim">loading community...</p>
+      </div>
+
+      <!-- Main Content -->
+      <div id="dash-content" style="display: none">
+        <!-- User bar -->
+        <section class="user-bar">
+          <div class="user-bar-left">
+            <div class="user-bar-avatar" id="user-avatar">
+              <span id="user-initial">?</span>
+            </div>
+            <div class="user-bar-info">
+              <h2 id="user-greeting">hello, user</h2>
+              <p class="text-dim" id="user-email" style="font-size: 0.8rem"></p>
+            </div>
+          </div>
+          <div class="user-bar-actions">
+            <button class="btn-icon" id="settings-toggle" title="settings">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+                ></path>
+              </svg>
+            </button>
+            <button class="btn btn-ghost" id="logout-btn" style="font-size: 0.8rem">
+              sign out
+            </button>
+          </div>
+        </section>
+
+        <!-- Settings panel (collapsed by default) -->
+        <section class="settings-panel" id="settings-panel" style="display: none">
+          <div class="dash-card">
+            <div class="settings-header">
+              <h3>account settings</h3>
+              <button class="btn-text text-dim" id="settings-close">close ×</button>
+            </div>
+            <form id="settings-form" class="settings-form">
+              <div class="settings-grid">
+                <div class="input-group">
+                  <label class="input-label">username</label>
+                  <input
+                    type="text"
+                    id="set-username"
+                    class="input-field"
+                    placeholder="your username"
+                  />
+                </div>
+                <div class="input-group">
+                  <label class="input-label">location</label>
+                  <input
+                    type="text"
+                    id="set-location"
+                    class="input-field"
+                    placeholder="city, country"
+                  />
+                </div>
+                <div class="input-group" style="grid-column: 1 / -1">
+                  <label class="input-label">bio</label>
+                  <textarea
+                    id="set-bio"
+                    class="input-field"
+                    rows="3"
+                    placeholder="tell us about yourself..."
+                  ></textarea>
+                </div>
+                <div class="input-group">
+                  <label class="input-label">website</label>
+                  <input
+                    type="url"
+                    id="set-website"
+                    class="input-field"
+                    placeholder="https://..."
+                  />
+                </div>
+                <div class="input-group">
+                  <label class="input-label">avatar</label>
+                  <input type="file" id="set-avatar" class="input-field" accept="image/*" />
+                </div>
+              </div>
+              <div class="flex gap-md align-center mt-md">
+                <button type="submit" class="btn btn-red" id="save-settings-btn">
+                  save changes
+                </button>
+                <span id="settings-msg" class="text-dim" style="font-size: 0.8rem"></span>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- New Discussion Modal (hidden by default) -->
+        <div id="new-discussion-modal" class="banned-overlay" style="display: none">
+          <div class="utt-write-box">
+            <div class="utt-write-header">
+              <div class="utt-write-tabs">
+                <span class="utt-tab active">Write</span>
+                <span class="utt-tab">Preview</span>
+              </div>
+              <button class="btn-text text-dim" id="close-discussion-modal">✕</button>
+            </div>
+            <form id="new-discussion-form">
+              <input
+                type="text"
+                id="discussion-title"
+                class="utt-write-title"
+                placeholder="Title"
+                required
+              />
+              <textarea
+                id="discussion-body"
+                class="utt-write-textarea"
+                rows="6"
+                placeholder="Leave a comment"
+                required
+              ></textarea>
+              <div class="utt-write-footer">
+                <span class="utt-markdown-note">🖊 Styling with Markdown is supported</span>
+                <div class="utt-write-actions">
+                  <span id="discussion-msg" class="text-dim" style="font-size: 0.8rem"></span>
+                  <button type="submit" class="utt-submit-btn" id="submit-discussion-btn">
+                    Comment
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Discussions feed -->
+        <section id="discussion-feed" class="dash-feed">
+          <div class="feed-header">
+            <h3>discussions</h3>
+            <button id="new-discussion-btn" class="btn btn-red" style="font-size: 0.8rem">
+              + new discussion
+            </button>
+          </div>
+          <div id="issues-feed">
+            <div class="loading-spinner"></div>
+          </div>
+          <div id="feed-empty" style="display: none" class="text-center">
+            <p class="text-dim" style="padding: 40px 0">no discussions yet. start one on github!</p>
+          </div>
+          <div id="feed-error" style="display: none" class="text-center">
+            <p class="text-red" style="padding: 40px 0">
+              failed to load discussions. try refreshing.
+            </p>
+            <button class="btn btn-ghost" id="retry-btn" style="font-size: 0.8rem">retry</button>
+          </div>
+        </section>
+
+        <!-- Discussion Detail View (hidden by default) -->
+        <section id="discussion-detail" class="dash-detail-container" style="display: none">
+          <div class="feed-header">
+            <button id="back-to-feed" class="btn btn-ghost" style="font-size: 0.8rem">
+              ← back to discussions
+            </button>
+          </div>
+
+          <div class="utt-detail-wrapper">
+            <!-- Issue Title Section -->
+            <div class="utt-detail-header">
+              <h2 id="detail-title" class="utt-detail-title"></h2>
+              <div class="utt-detail-meta-row">
+                <span class="github-badge-open">Open</span>
+                <div id="detail-meta" class="utt-detail-meta"></div>
+              </div>
+            </div>
+
+            <div class="utt-detail-content-grid">
+              <!-- The main character's comment (the issue body) -->
+              <div id="detail-body-container" class="utt-comment-primary">
+                <!-- Dynamically filled by JS: avatar + card with body -->
+              </div>
+
+              <!-- Utterances comments widget below -->
+              <div id="utterances-container" class="utt-comments-section"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-text"><span>I</span>nfiniware</div>
+          <p class="text-dim" style="max-width: 250px; font-size: 0.85rem">
+            an independent ecosystem building tools with intention and structural focus.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>platform</h4>
+            <div class="footer-item">
+              <a href="manifesto.html" class="footer-link">manifesto</a>
+            </div>
+            <div class="footer-item">
+              <a href="faq.html" class="footer-link">faq</a>
+            </div>
+            <div class="footer-item">
+              <a href="dashboard.html" class="footer-link">community hub</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>legal</h4>
+            <div class="footer-item">
+              <a href="privacy.html" class="footer-link">privacy policy</a>
+            </div>
+            <div class="footer-item">
+              <a href="license.html" class="footer-link">license</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>support</h4>
+            <div class="footer-item">
+              <a href="mailto:support@infiniware.bid" class="footer-link">support@infiniware.bid</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>infiniware © 2026</span>
+        <span>crafted by human hand</span>
+      </div>
+    </footer>
+
+    <script type="module" src="dashboard.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>topic - infiniware</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+      </div>
+      <div class="nav-extras">
+        <button class="theme-toggle-btn" aria-label="toggle theme"></button>
+        <button class="mobile-menu-btn">☰</button>
+      </div>
+      <nav>
+        <div class="nav-links">
+          <a href="dashboard.html" class="nav-link">dashboard</a>
+          <a href="#" class="nav-link" id="logout-btn">sign out</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container" style="max-width: 900px; margin-top: 40px">
+      <!-- Topic Header -->
+      <div id="topic-header" class="card mb-lg">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <!-- Posts Container -->
+      <div id="posts-container" class="flex-col gap-lg mb-xl">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <!-- Utterances Comments (GitHub Issues) -->
+      <div id="comments-section" class="card" style="display: none">
+        <h3 class="mb-md">discussion</h3>
+        <p class="text-dim" style="font-size: 0.85rem; margin-bottom: 16px">
+          powered by github issues. sign in with github to comment.
+        </p>
+        <script
+          src="https://utteranc.es/client.js"
+          repo="FDJTS/Infiniware11"
+          issue-term="pathname"
+          theme="github-dark"
+          crossorigin="anonymous"
+          async
+        ></script>
+      </div>
+    </div>
+
+    <script type="module">
+      import { auth } from './firebase-init.js'
+      import { initAuthListener, logout } from './auth.js'
+      import { getTopic, subscribeToPosts, updatePost, deletePost } from './community.js'
+      import { renderContent, formatDate } from './utils.js'
+
+      const topicHeader = document.getElementById('topic-header')
+      const postsContainer = document.getElementById('posts-container')
+      const commentsSection = document.getElementById('comments-section')
+      const logoutBtn = document.getElementById('logout-btn')
+
+      let currentTopic = null
+      let currentUser = null
+
+      // Get topic ID from URL
+      const urlParams = new URLSearchParams(window.location.search)
+      const topicId = urlParams.get('id')
+
+      if (!topicId) {
+        window.location.href = 'dashboard.html'
+      }
+
+      initAuthListener((user) => {
+        if (!user) {
+          window.location.href = 'signin.html'
+        } else if (!user.emailVerified) {
+          window.location.href = 'verify-email.html'
+        } else {
+          currentUser = user
+          loadTopic()
+          loadPosts()
+        }
+      })
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => logout())
+      }
+
+      async function loadTopic() {
+        try {
+          currentTopic = await getTopic(topicId)
+          if (!currentTopic) {
+            topicHeader.innerHTML = '<p class="text-red">topic not found.</p>'
+            return
+          }
+
+          const dateStr = formatDate(currentTopic.created_at)
+
+          topicHeader.innerHTML = `
+                    <div class="flex justify-between align-start gap-md mb-md">
+                        <div style="flex: 1;">
+                            <div class="flex align-center gap-sm mb-sm">
+                                ${currentTopic.pinned ? '<span class="text-red" style="font-size: 0.75rem;">pinned</span>' : ''}
+                                ${currentTopic.locked ? '<span class="text-dim" style="font-size: 0.75rem;">locked</span>' : ''}
+                                <h2 style="margin: 0;">${escapeHtml(currentTopic.title)}</h2>
+                            </div>
+                            <div class="flex align-center gap-md" style="font-size: 0.85rem;">
+                                <span class="text-dim">by <a href="profile.html?uid=${currentTopic.author_uid}" class="text-white" style="text-decoration: none;">${escapeHtml(currentTopic.author_username)}</a></span>
+                                <span class="text-dim">•</span>
+                                <span class="text-dim">${dateStr}</span>
+                            </div>
+                        </div>
+                        <a href="dashboard.html" class="btn btn-ghost" style="font-size: 0.85rem;">back</a>
+                    </div>
+                `
+
+          // Show comments section (Utterances) unless topic is locked
+          if (!currentTopic.locked) {
+            commentsSection.style.display = 'block'
+          }
+        } catch (error) {
+          console.error('Error loading topic:', error)
+          topicHeader.innerHTML = '<p class="text-red">failed to load topic.</p>'
+        }
+      }
+
+      function loadPosts() {
+        subscribeToPosts(topicId, (posts) => {
+          postsContainer.innerHTML = ''
+
+          if (posts.length === 0) {
+            postsContainer.innerHTML = '<p class="text-dim text-center">no content yet.</p>'
+            return
+          }
+
+          // Show only the first post (topic content) - additional discussion happens in Utterances
+          const firstPost = posts[0]
+          const isOwner = currentUser && currentUser.uid === firstPost.author_uid
+          const card = createPostCard(firstPost, isOwner, true)
+          postsContainer.appendChild(card)
+        })
+      }
+
+      function createPostCard(post, isOwner, isFirstPost) {
+        const div = document.createElement('div')
+        div.className = 'card'
+        div.id = `post-${post.id}`
+
+        const dateStr = formatDate(post.created_at)
+        const editedStr =
+          post.updated_at && post.updated_at.getTime() !== post.created_at.getTime()
+            ? ' (edited)'
+            : ''
+
+        const mediaHtml =
+          post.media_urls && post.media_urls.length > 0
+            ? post.media_urls
+                .map(
+                  (url) => `
+                    <div class="post-media mt-md">
+                        <img src="${url}" alt="attachment">
+                    </div>
+                `
+                )
+                .join('')
+            : ''
+
+        div.innerHTML = `
+                <div class="flex gap-md">
+                    <div style="min-width: 50px;">
+                        <a href="profile.html?uid=${post.author_uid}">
+                            <div class="avatar-small" style="width: 50px; height: 50px; border-radius: 50%; background: #222; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                <span style="opacity: 0.5; font-size: 1.2rem;">${(post.author_username || 'U')[0].toUpperCase()}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div style="flex: 1; min-width: 0;">
+                        <div class="flex justify-between align-center mb-sm">
+                            <div class="flex align-center gap-sm">
+                                <a href="profile.html?uid=${post.author_uid}" class="text-white" style="font-weight: 600; text-decoration: none;">
+                                    ${escapeHtml(post.author_username)}
+                                </a>
+                                ${isFirstPost ? '<span class="text-red" style="font-size: 0.75rem;">topic starter</span>' : ''}
+                            </div>
+                            <div class="flex align-center gap-sm">
+                                <span class="text-dim" style="font-size: 0.85rem;">${dateStr}${editedStr}</span>
+                                ${
+                                  isOwner
+                                    ? `
+                                    <button class="btn-text text-dim hover-white edit-post-btn" data-post-id="${post.id}" style="font-size: 0.85rem; margin-left: 10px;">edit</button>
+                                    <button class="btn-text text-red hover-white delete-post-btn" data-post-id="${post.id}" style="font-size: 0.85rem; margin-left: 5px;">delete</button>
+                                `
+                                    : ''
+                                }
+                            </div>
+                        </div>
+                        <div class="post-content" id="post-content-${post.id}">
+                            ${renderContent(post.content)}
+                        </div>
+                        ${mediaHtml}
+                    </div>
+                </div>
+            `
+
+        // Edit functionality
+        if (isOwner) {
+          const editBtn = div.querySelector('.edit-post-btn')
+          const deleteBtn = div.querySelector('.delete-post-btn')
+          const contentDiv = div.querySelector(`#post-content-${post.id}`)
+
+          editBtn.addEventListener('click', () => {
+            const currentText = post.content
+            const textarea = document.createElement('textarea')
+            textarea.className = 'input-field'
+            textarea.value = currentText
+            textarea.rows = 6
+
+            const saveBtn = document.createElement('button')
+            saveBtn.className = 'btn btn-red mt-sm'
+            saveBtn.textContent = 'save'
+
+            const cancelBtn = document.createElement('button')
+            cancelBtn.className = 'btn btn-ghost mt-sm'
+            cancelBtn.textContent = 'cancel'
+            cancelBtn.style.marginLeft = '10px'
+
+            contentDiv.innerHTML = ''
+            contentDiv.appendChild(textarea)
+            contentDiv.appendChild(saveBtn)
+            contentDiv.appendChild(cancelBtn)
+
+            saveBtn.addEventListener('click', async () => {
+              const newContent = textarea.value.trim()
+              if (newContent.length < 10) {
+                alert('content must be at least 10 characters.')
+                return
+              }
+              try {
+                await updatePost(post.id, newContent)
+              } catch (error) {
+                console.error('Error updating post:', error)
+                alert('failed to update post.')
+              }
+            })
+
+            cancelBtn.addEventListener('click', () => {
+              contentDiv.innerHTML = renderContent(post.content)
+            })
+          })
+
+          deleteBtn.addEventListener('click', async () => {
+            if (confirm('are you sure you want to delete this post?')) {
+              try {
+                await deletePost(post.id)
+              } catch (error) {
+                console.error('Error deleting post:', error)
+                alert('failed to delete post.')
+              }
+            }
+          })
+        }
+
+        return div
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement('div')
+        div.textContent = text
+        return div.innerHTML
+      }
+    </script>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-text"><span>I</span>nfiniware</div>
+          <p class="text-dim" style="max-width: 250px; font-size: 0.85rem">
+            an independent ecosystem building tools with intention and structural focus.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>platform</h4>
+            <div class="footer-item">
+              <a href="manifesto.html" class="footer-link">manifesto</a>
+            </div>
+            <div class="footer-item">
+              <a href="faq.html" class="footer-link">faq</a>
+            </div>
+            <div class="footer-item">
+              <a href="dashboard.html" class="footer-link">community hub</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>legal</h4>
+            <div class="footer-item">
+              <a href="privacy.html" class="footer-link">privacy policy</a>
+            </div>
+            <div class="footer-item">
+              <a href="license.html" class="footer-link">license</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>support</h4>
+            <div class="footer-item">
+              <a href="mailto:support@infiniware.bid" class="footer-link">support@infiniware.bid</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>infiniware © 2026</span>
+        <span>crafted by human hand</span>
+      </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

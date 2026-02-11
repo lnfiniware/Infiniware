@@ -1,0 +1,21 @@
+{
+  "name": "infiniware-guardian-server",
+  "version": "1.0.0",
+  "description": "Node.js Guardian Server for Infiniware Community",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "firebase",
+    "moderation",
+    "server"
+  ],
+  "author": "Infiniware",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^11.5.0",
+    "fs-extra": "^11.1.0"
+  }
+}

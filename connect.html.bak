@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>connect // infiniware</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .icon-inline {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 12px;
+            fill: currentColor;
+        }
+
+        .contact-box {
+            background: var(--clr-black-elevated);
+            border: 1px solid var(--clr-gray-dark);
+            padding: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="nav-brand">
+            <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">home</a></li>
+                <li><a href="products.html" class="nav-link">products</a></li>
+                <li><a href="blog.html" class="nav-link">blog</a></li>
+                <li><a href="community.html" class="nav-link">community</a></li>
+                <li><a href="connect.html" class="nav-link active">connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2 class="cursive-accent">get in touch</h2>
+            <h1>connect with us</h1>
+            <p class="text-dim">whether you want to join the discussion or need help with a project, we're here.</p>
+
+            <div class="grid mt-xl"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: var(--space-lg);">
+                <div class="card">
+                    <h3 style="display: flex; align-items: center;">
+                        <svg class="icon-inline" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.71,32.65-1.82,56.6.64,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.22,85.25,68.42,68.42,0,0,1,19,75.07c1.71-1.24,3.42-2.55,5.06-3.89a71.6,71.6,0,0,0,79,0c1.64,1.34,3.35,2.65,5.06,3.89a68.35,68.35,0,0,1-20.2,10.18,77.1,77.1,0,0,0,6.51,11.11,105.27,105.27,0,0,0,32.07-16.15h0C130,51.84,121.39,28.2,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5.07-12.69,11.45-12.69S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.07-12.69,11.44-12.69S96.22,46,96.11,53,91.07,65.69,84.69,65.69Z" />
+                        </svg>
+                        discord server
+                    </h3>
+                    <p>join our real-time community. talk to the developer, share ideas, and get the latest internal
+                        updates.</p>
+                    <a href="https://discord.com/invite/raU9FB2aeb" target="_blank" class="btn mt-md">join discord</a>
+                </div>
+
+                <div class="card">
+                    <h3 style="display: flex; align-items: center;">
+                        <svg class="icon-inline" viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                        general info
+                    </h3>
+                    <p>for general questions, brainstorming, or just connecting with the team, reach out here.</p>
+                    <a href="mailto:info@infiniware.org" class="btn mt-md">info@infiniware.org</a>
+                </div>
+
+                <div class="card">
+                    <h3 style="display: flex; align-items: center;">
+                        <svg class="icon-inline" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                        </svg>
+                        technical help
+                    </h3>
+                    <p>experiencing bugs or technical issues? use our dedicated support channel for a faster resolution.
+                    </p>
+                    <a href="mailto:support@infiniware.org" class="btn mt-md">support@infiniware.org</a>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <h3 class="ui-font">structural communication</h3>
+                <p>
+                    we keep our communication channels distinct to ensure your inquiries
+                    reach the right hands immediately.
+                    <strong>info@infiniware.org</strong> is for the "why" and the "what's next,"
+                    while <strong>support@infiniware.org</strong> is for the "how do i fix this."
+                </p>
+                <div class="mt-md human-touch">
+                    <p>no support bots. no canned responses. just human developers.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text"><span>I</span>nfiniware</div>
+                <p class="text-dim" style="max-width: 250px; font-size: 0.85rem;">
+                    an independent ecosystem building tools with intention and structural focus.
+                </p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>platform</h4>
+                    <div class="footer-item"><a href="manifesto.html" class="footer-link">manifesto</a></div>
+                    <div class="footer-item"><a href="faq.html" class="footer-link">faq</a></div>
+                    <div class="footer-item"><a href="connect.html" class="footer-link">connect</a></div>
+                </div>
+                <div class="footer-col">
+                    <h4>legal</h4>
+                    <div class="footer-item"><a href="privacy.html" class="footer-link">privacy policy</a></div>
+                    <div class="footer-item"><a href="license.html" class="footer-link">license</a></div>
+                </div>
+                <div class="footer-col">
+                    <h4>support</h4>
+                    <div class="footer-item"><a href="mailto:support@infiniware.bid"
+                            class="footer-link">support@infiniware.bid</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>infiniware © 2026</span>
+            <span>crafted by human hand</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

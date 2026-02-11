@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>docs // infiniware</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+      </div>
+      <div class="nav-extras">
+        <button class="theme-toggle-btn" aria-label="toggle theme"></button>
+        <button class="mobile-menu-btn">☰</button>
+      </div>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">home</a>
+          <a href="products.html" class="nav-link">products</a>
+          <a href="blog.html" class="nav-link">blog</a>
+          <a href="docs.html" class="nav-link active">docs</a>
+          <a href="dashboard.html" class="nav-link">community</a>
+          <a href="connect.html" class="nav-link">connect</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section>
+        <h2 class="cursive-accent">technical documentation</h2>
+        <h1>structural clarity</h1>
+        <p class="text-dim">documentation for the infiniware ecosystem and its projects.</p>
+
+        <div class="grid mt-xl" style="display: grid; grid-template-columns: 300px 1fr; gap: 60px">
+          <aside>
+            <div class="detail-block">
+              <h4 class="ui-font text-red">overview</h4>
+              <ul style="list-style: none; padding-top: 10px">
+                <li class="mb-sm">
+                  <a href="#intro" class="text-dim">introduction</a>
+                </li>
+                <li class="mb-sm">
+                  <a href="#design" class="text-dim">design rules</a>
+                </li>
+                <li class="mb-sm">
+                  <a href="#auth" class="text-dim">auth system</a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+
+          <article class="organized-content">
+            <div id="intro" class="mb-xxl">
+              <h3 class="ui-font">introduction</h3>
+              <p>
+                infiniware is a human-centric software ecosystem. we prioritize focus, privacy, and
+                technical excellence over growth and engagement. our tools are designed to be silent
+                companions in your digital workflow.
+              </p>
+            </div>
+
+            <div id="privacy" class="mb-xxl">
+              <h3 class="ui-font">privacy & sovereignty</h3>
+              <p>
+                privacy is our first and most important rule. **we never sell data.** we believe in
+                users owning their own digital footprint. every project under the infiniware banner
+                is built with a "privacy first" mindset, ensuring that zero unnecessary data leaves
+                your device.
+              </p>
+            </div>
+
+            <div id="design" class="mb-xxl">
+              <h3 class="ui-font">design rules</h3>
+              <p>all infiniware interfaces follow a strict structural hierarchy:</p>
+              <ul class="detail-block">
+                <li><strong>all text lowercase:</strong> except for the "I" in the logo.</li>
+                <li><strong>typography:</strong> ubuntu for branding, inter for utility.</li>
+                <li>
+                  <strong>colors:</strong> monochromatic palette with red as a structural accent.
+                </li>
+              </ul>
+            </div>
+
+            <div id="auth" class="mb-xxl">
+              <h3 class="ui-font">authentication system</h3>
+              <p>
+                we use firebase authentication for identity management. users can authenticate via
+                email or github oauth. account deletion is mandatory and structural, purging all
+                associated data.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-text"><span>I</span>nfiniware</div>
+          <p class="text-dim" style="max-width: 250px; font-size: 0.85rem">
+            an independent ecosystem building tools with intention.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>platform</h4>
+            <div class="footer-item">
+              <a href="manifesto.html" class="footer-link">manifesto</a>
+            </div>
+            <div class="footer-item">
+              <a href="faq.html" class="footer-link">faq</a>
+            </div>
+            <div class="footer-item">
+              <a href="dashboard.html" class="footer-link">community hub</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>legal</h4>
+            <div class="footer-item">
+              <a href="privacy.html" class="footer-link">privacy policy</a>
+            </div>
+            <div class="footer-item">
+              <a href="license.html" class="footer-link">license</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>support</h4>
+            <div class="footer-item">
+              <a href="mailto:support@infiniware.bid" class="footer-link">support@infiniware.bid</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>infiniware © 2026</span>
+        <span>crafted by human hand</span>
+      </div>
+    </footer>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

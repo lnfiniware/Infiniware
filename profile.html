@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile - Infiniware</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .profile-container {
+        max-width: 600px;
+        margin: 80px auto;
+        padding: 24px;
+      }
+
+      .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+      }
+
+      .profile-avatar {
+        width: 120px;
+        height: 120px;
+        background: var(--clr-gray-dark);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: var(--clr-gray-dim);
+        overflow: hidden;
+        border-radius: 0;
+        /* Squared */
+      }
+
+      .profile-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profile-name {
+        font-family: var(--f-ui);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--clr-white);
+        margin: 0;
+      }
+
+      .profile-bio {
+        color: var(--clr-gray-dim);
+        line-height: 1.5;
+        max-width: 400px;
+      }
+
+      .profile-meta {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+        font-size: 0.9rem;
+        color: var(--clr-red-accent);
+      }
+
+      .profile-meta a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+      }
+
+      .profile-meta a:hover {
+        border-color: currentColor;
+      }
+
+      .loading-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+      }
+
+      #error-msg {
+        color: var(--clr-red-accent);
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body class="dash-wrapper">
+    <header class="header">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+      </div>
+      <div class="nav-extras">
+        <button class="theme-toggle-btn" aria-label="toggle theme"></button>
+        <button class="mobile-menu-btn">☰</button>
+      </div>
+      <nav>
+        <div class="nav-links">
+          <a href="dashboard.html" class="nav-link">dashboard</a>
+          <a href="#" class="nav-link" id="logout-btn">sign out</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="profile-container">
+      <div id="loading" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p class="text-dim" style="margin-top: 16px">fetching profile...</p>
+      </div>
+
+      <div id="profile-content" style="display: none">
+        <div class="profile-header">
+          <div class="profile-avatar" id="p-avatar">?</div>
+          <h1 class="profile-name" id="p-username">user</h1>
+          <p class="profile-bio" id="p-bio">no bio available.</p>
+          <div class="profile-meta">
+            <span id="p-location"></span>
+            <a href="#" id="p-website" target="_blank" style="display: none">website ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="error-msg" style="display: none">
+        <h2>user not found</h2>
+        <p class="text-dim">authenticating...</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-text"><span>I</span>nfiniware</div>
+          <p class="text-dim" style="max-width: 250px; font-size: 0.85rem">
+            an independent ecosystem building tools with intention and structural focus.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>platform</h4>
+            <div class="footer-item">
+              <a href="manifesto.html" class="footer-link">manifesto</a>
+            </div>
+            <div class="footer-item">
+              <a href="faq.html" class="footer-link">faq</a>
+            </div>
+            <div class="footer-item">
+              <a href="dashboard.html" class="footer-link">community hub</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>legal</h4>
+            <div class="footer-item">
+              <a href="privacy.html" class="footer-link">privacy policy</a>
+            </div>
+            <div class="footer-item">
+              <a href="license.html" class="footer-link">license</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>support</h4>
+            <div class="footer-item">
+              <a href="mailto:support@infiniware.bid" class="footer-link">support@infiniware.bid</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>infiniware © 2026</span>
+        <span>crafted by human hand</span>
+      </div>
+    </footer>
+
+    <script type="module" src="profile.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>infiniware // human-made software</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+      </div>
+      <div class="nav-extras">
+        <button class="theme-toggle-btn" aria-label="toggle theme"></button>
+        <button class="mobile-menu-btn">☰</button>
+      </div>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link active">home</a>
+          <a href="products.html" class="nav-link">products</a>
+          <a href="blog.html" class="nav-link">blog</a>
+          <a href="docs.html" class="nav-link">docs</a>
+          <a href="dashboard.html" class="nav-link">community</a>
+          <a href="connect.html" class="nav-link">connect</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section id="hero">
+        <h2 class="cursive-accent">human-made software for a noisy world</h2>
+        <h1>crafting tools with <br />structural clarity.</h1>
+        <p style="max-width: 700px; font-size: 1.2rem; color: var(--clr-gray-dim)">
+          we build quiet, high-density applications designed for humans who value focus. from
+          localized productivity tools to globally-aware religious companions, every line of code is
+          an intentional step towards simplicity and respect.
+        </p>
+        <div class="mt-lg">
+          <a href="products.html" class="btn">explore products</a>
+          <a
+            href="blog.html"
+            class="btn"
+            style="margin-left: 15px; border-color: var(--clr-gray-dim)"
+            >read dev logs</a
+          >
+        </div>
+      </section>
+
+      <section id="featured">
+        <h2 class="ui-font">featured product: al-muslim</h2>
+        <div class="product-hero mt-lg">
+          <div class="product-logo-container">
+            <img src="Screenshot 2025-11-27 214334.png" alt="al-muslim logo" class="product-logo" />
+          </div>
+          <div>
+            <h3>the all-in-one companion</h3>
+            <p>
+              designed for calm, respectful, and accurate daily usage. no ads, no tracking—just the
+              essentials you need for your spiritual journey.
+            </p>
+            <div
+              id="prayer-widget"
+              class="card mt-md"
+              style="border: 1px solid var(--clr-gray-dark); background: rgba(255, 255, 255, 0.02)"
+            >
+              <div class="flex-between mb-sm">
+                <span class="ui-font text-red" style="font-size: 0.8rem">prayer times</span>
+                <button
+                  id="get-location-btn"
+                  class="btn-sm"
+                  style="font-size: 0.7rem; padding: 4px 10px"
+                >
+                  use my location
+                </button>
+              </div>
+              <div id="prayer-times-list" class="flex gap-md flex-wrap">
+                <p class="text-dim" style="font-size: 0.85rem">
+                  click to fetch times for your area.
+                </p>
+              </div>
+            </div>
+            <div class="mt-md">
+              <a href="products.html" class="text-red ui-font" style="font-size: 0.9rem"
+                >view technical specs -></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-text"><span>I</span>nfiniware</div>
+          <p class="text-dim" style="max-width: 250px; font-size: 0.85rem">
+            an independent ecosystem building tools with intention and structural focus.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>platform</h4>
+            <div class="footer-item">
+              <a href="manifesto.html" class="footer-link">manifesto</a>
+            </div>
+            <div class="footer-item">
+              <a href="faq.html" class="footer-link">faq</a>
+            </div>
+            <div class="footer-item">
+              <a href="dashboard.html" class="footer-link">community hub</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>legal</h4>
+            <div class="footer-item">
+              <a href="privacy.html" class="footer-link">privacy policy</a>
+            </div>
+            <div class="footer-item">
+              <a href="license.html" class="footer-link">license</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>support</h4>
+            <div class="footer-item">
+              <a href="mailto:support@infiniware.bid" class="footer-link">support@infiniware.bid</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>infiniware © 2026</span>
+        <span>crafted by human hand</span>
+      </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
