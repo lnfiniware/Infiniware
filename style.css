@@ -1474,6 +1474,73 @@ section {
   line-height: 1.7;
 }
 
+/* Tooltips & Auth Helpers */
+.tooltip-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: help;
+}
+
+.recommended-tag {
+  font-size: 0.75rem;
+  color: var(--accent-red);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.tooltip-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50% !important;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--text-dim);
+  transition: all var(--trans-fast);
+}
+
+.tooltip-box {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 240px;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  color: var(--text-main);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  pointer-events: none;
+  opacity: 0;
+  transition: all var(--trans-main);
+  z-index: 100;
+  text-align: center;
+}
+
+.tooltip-wrap:hover .tooltip-box {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-wrap:hover .tooltip-icon {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
 /* end of core styles */
 
 /* 
