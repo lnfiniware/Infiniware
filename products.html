@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,7 +24,7 @@
       </div>
       <div class="nav-extras">
         <button class="theme-toggle-btn" aria-label="toggle theme"></button>
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" type="button" aria-label="open navigation" aria-expanded="false">☰</button>
       </div>
       <nav>
         <div class="nav-links">
@@ -40,21 +40,17 @@
 
     <main class="container">
       <section>
-        <h2 class="cursive-accent">what i've been working on</h2>
+        <h2 class="cursive-accent">human-made software for a noisy world</h2>
         <h1>al-muslim</h1>
 
         <div class="product-hero mt-xl">
           <div class="product-logo-container">
-            <img src="Screenshot 2025-11-27 214334.png" alt="al-muslim logo" class="product-logo" />
+            <img src="al-muslim_logo.png" alt="al-muslim logo" class="product-logo" />
           </div>
           <div class="organized-content">
             <div class="detail-block">
-              <h4>the project</h4>
-              <p>
-                i started al-muslim because most apps out there felt too busy. i wanted something
-                quiet, accurate, and completely private. it's built for those who value focus over
-                features.
-              </p>
+              <h4>the mobile project</h4>
+              <p>al-muslim is built to stay calm and direct. no ads. privacy first. fast where it matters. the goal is simple: keep the experience focused, respectful, and ready for daily use without noise.</p>
             </div>
           </div>
         </div>
@@ -70,42 +66,30 @@
           <div class="card">
             <span class="text-red ui-font">01</span>
             <h3>real-time prayer</h3>
-            <p>
-              handles all the math locally. your location never leaves your phone. accurate
-              schedules, no matter where you are.
-            </p>
+            <p>handles all the math locally. your location never leaves your device. accurate schedules, no waiting, and no clutter.</p>
           </div>
           <div class="card">
             <span class="text-red ui-font">02</span>
             <h3>clean quran</h3>
-            <p>
-              no distractions. just high-contrast text and a fast search engine. built for reading,
-              not for clicking through ads.
-            </p>
+            <p>high-contrast reading, straightforward playback, and fast search built for actual daily use instead of distraction.</p>
           </div>
           <div class="card">
             <span class="text-red ui-font">03</span>
-            <h3>adhkar & qibla</h3>
-            <p>
-              essential tools for the daily routine. a simple compass and a list of adhkar that
-              stays out of your way.
-            </p>
+            <h3>privacy first</h3>
+            <p>no ads and no telemetry layer shaping the experience. what matters stays local and direct.</p>
           </div>
           <div class="card">
             <span class="text-red ui-font">04</span>
-            <h3>multi-arch</h3>
-            <p>
-              available on android right now. i'm testing desktop builds for windows and linux. ios
-              is on the roadmap.
-            </p>
+            <h3>fast by default</h3>
+            <p>a quiet interface is only useful if it responds instantly. the app is tuned to stay light and quick.</p>
           </div>
         </div>
 
         <div class="organized-specs mt-xxl">
-          <h2 class="ui-font">the tech stack (for nerds)</h2>
+          <h2 class="ui-font">mobile stack</h2>
           <ul class="detail-block" style="list-style: none">
-            <li><strong>framework:</strong> react native + expo (smooth & native)</li>
-            <li><strong>database:</strong> sqlite (local-first, indexed)</li>
+            <li><strong>framework:</strong> react native + expo</li>
+            <li><strong>database:</strong> sqlite</li>
             <li><strong>privacy:</strong> zero external telemetry</li>
           </ul>
         </div>
@@ -118,37 +102,38 @@
             border: 1px solid var(--clr-red-accent);
           "
         >
-          <h3>get the app</h3>
-          <p class="text-dim">
-            grab the android version or check the source. stable and human-tested.
-          </p>
-          <div class="mt-md" style="display: flex; gap: 15px; flex-wrap: wrap">
-            <a
-              href="application-255e5bef-575c-4536-9a56-6b69df1cbe81.apk"
-              class="btn"
-              download
-              style="display: inline-flex; align-items: center"
-            >
-              <svg class="icon-inline" viewBox="0 0 24 24">
-                <path
-                  d="M17.523 15.3414C17.0609 15.3414 16.6875 14.968 16.6875 14.5059C16.6875 14.0438 17.0609 13.6705 17.523 13.6705C17.9851 13.6705 18.3585 14.0438 18.3585 14.5059C18.3585 14.968 17.9851 15.3414 17.523 15.3414ZM6.477 15.3414C6.0149 15.3414 5.6415 14.968 5.6415 14.5059C5.6415 14.0438 6.0149 13.6705 6.477 13.6705C6.9391 13.6705 7.3125 14.0438 7.3125 14.5059C7.3125 14.968 6.9391 15.3414 6.477 15.3414ZM17.8935 9.7733L19.8631 6.3626C19.9866 6.1487 19.9133 5.8753 19.6995 5.7518C19.4856 5.6283 19.2122 5.7016 19.0887 5.9155L17.0945 9.3694C15.6582 8.7188 13.916 8.3555 12 8.3555C10.084 8.3555 8.3418 8.7188 6.9055 9.3694L4.9113 5.9155C4.7878 5.7016 4.5144 5.6283 4.3005 5.7518C4.0867 5.8753 4.0134 6.1487 4.1369 6.3626L6.1065 9.7733C2.5647 11.6833 0.2241 15.3111 0 19.5312H24C23.7759 15.3111 21.4353 11.6833 17.8935 9.7733Z"
-                />
-              </svg>
-              download android apk
-            </a>
-            <a
-              href="https://github.com/FDJTS/almuslim-apk"
-              target="_blank"
-              class="btn"
-              style="border-color: var(--clr-gray-dim); display: inline-flex; align-items: center"
-            >
-              <svg class="icon-inline" viewBox="0 0 24 24">
-                <path
-                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                />
-              </svg>
-              view on github
-            </a>
+          <h3>get the mobile build</h3>
+          <p class="text-dim">grab the android version and keep the core experience close at hand.</p>
+          <div class="mt-md action-row">
+            <a href="application-255e5bef-575c-4536-9a56-6b69df1cbe81.apk" class="btn" download><span class="btn-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.29a1 1 0 1 1 1.4 1.41l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.41L11 12.59V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z" /></svg></span>download android apk</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="ui-font">al-muslim for linux</h2>
+        <p class="text-dim" style="max-width: 760px">the official linux branch is now live as version 1.0v. it includes a standalone qt desktop app and a kde plasma widget, keeping prayer times, quran playback, and the hijri date close to the desktop with the same quiet direction as the mobile release.</p>
+        <div class="grid mt-xl" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg)">
+          <div class="card"><span class="text-red ui-font">01</span><h3>desktop app</h3><p>standalone qt desktop app built for linux with a direct, low-noise interface.</p></div>
+          <div class="card"><span class="text-red ui-font">02</span><h3>kde widget</h3><p>ships with a kde plasma widget so the essentials stay visible without opening the full app.</p></div>
+          <div class="card"><span class="text-red ui-font">03</span><h3>languages</h3><p>built with qml, shell, c++, and cmake, based on the current public repository.</p></div>
+          <div class="card"><span class="text-red ui-font">04</span><h3>release artifacts</h3><p>the current linux artifact is ready for download alongside the public source repository.</p></div>
+        </div>
+        <div class="organized-specs mt-xxl">
+          <h2 class="ui-font">linux project layout</h2>
+          <ul class="detail-block" style="list-style: none">
+            <li><strong>app/</strong> standalone qt app built with qml + c++</li>
+            <li><strong>contents/</strong> kde plasma widget files</li>
+            <li><strong>scripts/</strong> build, run, package, and release scripts</li>
+            <li><strong>dist/</strong> generated tar.gz release artifacts</li>
+          </ul>
+        </div>
+        <div class="mt-xl" style="background: var(--clr-black-elevated); padding: var(--space-lg); border: 1px solid var(--clr-red-accent)">
+          <h3>get the linux build</h3>
+          <p class="text-dim">download the current linux artifact or browse the official repository.</p>
+          <div class="mt-md action-row">
+            <a href="al-muslim-app-source-1.0v.tar.gz" class="btn" download><span class="btn-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.29a1 1 0 1 1 1.4 1.41l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.41L11 12.59V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z" /></svg></span>download for linux</a>
+            <a href="https://github.com/lnfiniware/al-muslim-for-Linux" target="_blank" rel="noopener" class="btn" style="border-color: var(--clr-gray-dim)"><span class="btn-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3a5 5 0 0 0 0 10h3v2H9a7 7 0 1 1 0-14h3v2H9Zm6 0h-3v2h3a5 5 0 1 1 0 10h-3v2h3a7 7 0 1 0 0-14Z" /></svg></span>view source code</a>
           </div>
         </div>
       </section>
@@ -193,11 +178,13 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>infiniware © 2026</span>
+        <span>infiniware &copy; 2026</span>
         <span>crafted by human hand</span>
       </div>
     </footer>
 
     <script type="module" src="script.js"></script>
-  </body>
+  
+</body>
 </html>
+

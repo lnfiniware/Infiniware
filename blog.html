@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,7 +15,7 @@
       </div>
       <div class="nav-extras">
         <button class="theme-toggle-btn" aria-label="toggle theme"></button>
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" type="button" aria-label="open navigation" aria-expanded="false">☰</button>
       </div>
       <nav>
         <div class="nav-links">
@@ -31,91 +31,53 @@
 
     <main class="container">
       <section>
-        <h2 class="cursive-accent">personal notes & logs</h2>
+        <h2 class="cursive-accent">human-made software for a noisy world</h2>
         <h1>development logs</h1>
-        <p class="text-dim">
-          hey. this is where i post updates on what i'm building, technical deep dives, and random
-          thoughts on software design.
-        </p>
+        <p class="text-dim" style="max-width: 720px">the latest state of infiniware lives here: product releases, website changes, and the small structural decisions behind them.</p>
 
         <div class="blog-feed mt-xl">
-          <div class="flex gap-md mb-lg">
-            <span
-              class="tag"
-              style="
-                cursor: pointer;
-                color: var(--clr-red-accent);
-                border-color: var(--clr-red-accent);
-              "
-              >all posts</span
-            >
-            <span class="tag" style="cursor: pointer">branding</span>
+          <div class="flex gap-md mb-lg" style="flex-wrap: wrap">
+            <span class="tag" style="cursor: pointer; color: var(--clr-red-accent); border-color: var(--clr-red-accent)">all posts</span>
+            <span class="tag" style="cursor: pointer">website</span>
             <span class="tag" style="cursor: pointer">al-muslim</span>
-            <span class="tag" style="cursor: pointer">architecture</span>
+            <span class="tag" style="cursor: pointer">linux</span>
+            <span class="tag" style="cursor: pointer">privacy</span>
           </div>
 
           <div class="organized-logs">
             <article class="post-entry">
-              <div class="text-red ui-font" style="font-size: 0.75rem">
-                feb 10, 2026 // dev_log_004
-              </div>
-              <h3>privacy first, always</h3>
-              <p>
-                i want to be very clear: we will never sell your personal data. privacy isn't a
-                secondary goal for me; it's the foundation of everything. we believe privacy matters
-                more than anything else in software design. al-muslim geolocation will always be
-                local, and your community posts are yours. trust is our only asset.
-              </p>
-              <div class="mt-md">
-                <span class="tag">philosophy</span> <span class="tag">privacy</span>
-              </div>
+              <div class="text-red ui-font" style="font-size: 0.75rem">mar 26, 2026 // dev_log_008</div>
+              <h3>public tabs are back in shape</h3>
+              <p>products, blog, community, and connect now reflect the current state of infiniware again. the linux release details stay on the products page, the community surface has a stronger public fallback, and the shared site language is back in line.</p>
+              <div class="mt-md"><span class="tag">website</span> <span class="tag">community</span></div>
             </article>
 
             <article class="post-entry">
-              <div class="text-red ui-font" style="font-size: 0.75rem">
-                feb 04, 2026 // dev_log_003
-              </div>
-              <h3>moving to v2: top nav and cleaner code</h3>
-              <p>
-                sidabars are cool, but they felt a bit too "dashboardy" for what i want infiniware
-                to be. i've moved the nav to the top and cleaned up the css core (~500 lines now).
-                it feels more like a platform now. i also added the footer for all the legal stuff.
-              </p>
-              <div class="mt-md">
-                <span class="tag">branding</span> <span class="tag">ui/ux</span>
-              </div>
+              <div class="text-red ui-font" style="font-size: 0.75rem">mar 26, 2026 // dev_log_007</div>
+              <h3>the website catches up</h3>
+              <p>the public site now reflects the current state of infiniware more honestly. the homepage carries the launch event, the products page includes the linux branch of al-muslim, and the auth pages now sit closer to the same visual system as the rest of the site.</p>
+              <div class="mt-md"><span class="tag">website</span> <span class="tag">release</span></div>
             </article>
 
             <article class="post-entry">
-              <div class="text-red ui-font" style="font-size: 0.75rem">
-                jan 20, 2026 // dev_log_002
-              </div>
-              <h3>local-first is the only way</h3>
-              <p>
-                just finished the sqlite migration for al-muslim. i'm tired of apps that need an
-                internet connection for every little thing. the quran search is now blazing fast
-                because it's all indexed on your device.
-              </p>
-              <div class="mt-md">
-                <span class="tag">al-muslim</span>
-                <span class="tag">database</span>
-              </div>
+              <div class="text-red ui-font" style="font-size: 0.75rem">mar 07, 2026 // dev_log_006</div>
+              <h3>al-muslim for linux reaches 1.0v</h3>
+              <p>the linux release is public now. it includes a standalone qt desktop app and a kde plasma widget, with prayer times, quran playback, and the hijri date brought closer to the desktop without losing the quieter infiniware direction.</p>
+              <div class="mt-md"><span class="tag">al-muslim</span> <span class="tag">linux</span></div>
             </article>
 
             <article class="post-entry">
-              <div class="text-red ui-font" style="font-size: 0.75rem">
-                jan 05, 2026 // dev_log_001
-              </div>
+              <div class="text-red ui-font" style="font-size: 0.75rem">feb 18, 2026 // dev_log_005</div>
+              <h3>no ads, privacy first, fast by default</h3>
+              <p>this is the line i want to hold. if al-muslim gets heavier, louder, or more manipulative over time, then the project drifts away from what made it worth building in the first place. the right features only matter if they stay respectful.</p>
+              <div class="mt-md"><span class="tag">al-muslim</span> <span class="tag">privacy</span></div>
+            </article>
+
+            <article class="post-entry">
+              <div class="text-red ui-font" style="font-size: 0.75rem">jan 05, 2026 // dev_log_004</div>
               <h3>why everything is lowercase</h3>
-              <p>
-                i get asked this a lot. lowercase just feels quieter. more structural. no screaming
-                headers, no corporate enthusiasm. just the code and the content. the red "I" is the
-                only thing that gets a capital—it's the anchor.
-              </p>
-              <div class="mt-md">
-                <span class="tag">philosophy</span>
-                <span class="tag">design</span>
-              </div>
+              <p>lowercase still feels quieter. more structural. less eager to sell itself. the red "I" remains the only anchor because it should feel intentional, not decorative.</p>
+              <div class="mt-md"><span class="tag">website</span> <span class="tag">design</span></div>
             </article>
           </div>
         </div>
@@ -161,7 +123,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>infiniware © 2026</span>
+        <span>infiniware &copy; 2026</span>
         <span>crafted by human hand</span>
       </div>
     </footer>
@@ -187,5 +149,8 @@
       })
     </script>
     <script type="module" src="script.js"></script>
-  </body>
+  
+</body>
 </html>
+
+

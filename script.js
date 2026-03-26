@@ -1,4 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js'
+﻿import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js'
 import {
   getAuth,
   onAuthStateChanged,
@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation()
   initScrollReveals()
   initCopyright()
+  initFooterSocials()
+  initEventCountdown()
   initPrayerTimes()
   initMobileMenu()
   initTheme()
@@ -116,22 +118,26 @@ function initNavigation() {
 }
 
 function initScrollReveals() {
+  const revealTargets = document.querySelectorAll(
+    'main section, .card, .post-card, .post-entry, article, footer.footer'
+  )
+
+  if (!revealTargets.length || !('IntersectionObserver' in window)) return
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1'
-          entry.target.style.transform = 'translateY(0)'
+          entry.target.classList.add('reveal-visible')
+          observer.unobserve(entry.target)
         }
       })
     },
     { threshold: 0.1 }
   )
 
-  document.querySelectorAll('.card, .post-card, .post-entry, article').forEach((el) => {
-    el.style.opacity = '0'
-    el.style.transform = 'translateY(20px)'
-    el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+  revealTargets.forEach((el) => {
+    el.classList.add('reveal-ready')
     observer.observe(el)
   })
 }
@@ -140,8 +146,57 @@ function initCopyright() {
   const footerBottom = document.querySelector('.footer-bottom span')
   if (footerBottom) {
     const year = new Date().getFullYear()
-    footerBottom.textContent = `infiniware © ${year}`
+    footerBottom.textContent = `infiniware \u00a9 ${year}`
   }
+}
+
+function initFooterSocials() {
+  const footer = document.querySelector('.footer')
+  const footerBottom = document.querySelector('.footer-bottom')
+
+  if (!footer || !footerBottom || footer.querySelector('.footer-socials')) return
+
+  const socials = [
+    {
+      label: 'github',
+      href: 'https://github.com/lnfiniware',
+      svg: `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>`
+    },
+    {
+      label: 'codeberg',
+      href: 'https://codeberg.org/Infiniware',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1A11 11 0 0 0 1 12a11 11 0 0 0 1.7 6.4L12 6l9.3 12.4A11 11 0 0 0 23 12 11 11 0 0 0 12 1Z"/><path fill="currentColor" opacity="0.45" d="M21.3 18.4 12 6l4.4 16.8a11 11 0 0 0 4.9-4.4Z" /></svg>`
+    },
+    {
+      label: 'mastodon',
+      href: 'https://mastodon.social/@Infiniware',
+      svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>`
+    }
+  ]
+
+  const row = document.createElement('div')
+  row.className = 'footer-socials'
+  row.innerHTML = socials
+    .map(
+      (social) => `<a class="footer-social-link" href="${social.href}" target="_blank" rel="noopener" aria-label="${social.label}">${social.svg}<span>${social.label}</span></a>`
+    )
+    .join('')
+
+  footer.insertBefore(row, footerBottom)
+}
+
+function initEventCountdown() {
+  const countdown = document.querySelector('[data-event-countdown]')
+  if (!countdown) return
+
+  const targetDate = new Date(2026, 4, 21)
+  const today = new Date()
+  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+  const msPerDay = 1000 * 60 * 60 * 24
+  const daysRemaining = Math.max(0, Math.round((targetDate - startOfToday) / msPerDay))
+
+  countdown.textContent =
+    daysRemaining === 0 ? 'today' : `${daysRemaining} day${daysRemaining === 1 ? '' : 's'} remaining`
 }
 
 // --- Community Page Logic (Public Entrance) ---
@@ -446,14 +501,40 @@ function initPrayerTimes() {
 
 function initMobileMenu() {
   const mobileBtn = document.querySelector('.mobile-menu-btn')
-  // Support both old .nav-list and new .nav-links containers
   const navContainer = document.querySelector('.nav-links') || document.querySelector('.nav-list')
 
   if (mobileBtn && navContainer) {
+    mobileBtn.setAttribute('type', 'button')
+    mobileBtn.setAttribute('aria-label', 'open navigation')
+    mobileBtn.setAttribute('aria-expanded', 'false')
+
+    const syncMenuState = () => {
+      const isOpen = navContainer.classList.contains('nav-active')
+      mobileBtn.textContent = isOpen ? '✕' : '☰'
+      mobileBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+      mobileBtn.setAttribute('aria-label', isOpen ? 'close navigation' : 'open navigation')
+    }
+
     mobileBtn.addEventListener('click', () => {
       navContainer.classList.toggle('nav-active')
-      mobileBtn.textContent = navContainer.classList.contains('nav-active') ? '✕' : '☰'
+      syncMenuState()
     })
+
+    navContainer.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navContainer.classList.remove('nav-active')
+        syncMenuState()
+      })
+    })
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 600) {
+        navContainer.classList.remove('nav-active')
+        syncMenuState()
+      }
+    })
+
+    syncMenuState()
   }
 }
 
@@ -508,3 +589,4 @@ function initTheme() {
     console.warn('// infiniware system: theme initialization exception handled')
   }
 }
+

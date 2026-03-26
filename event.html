@@ -1,0 +1,169 @@
+﻿
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>may 21, 2026 // infiniware</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .event-shell {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: clamp(28px, 4vw, 44px);
+        border: 1px solid rgba(227, 30, 36, 0.14);
+        background:
+          linear-gradient(180deg, rgba(227, 30, 36, 0.04), transparent 28%),
+          rgba(0, 0, 0, 0.78);
+        box-shadow: 0 0 36px rgba(227, 30, 36, 0.08);
+      }
+
+      .event-divider {
+        border: 0;
+        height: 1px;
+        background: rgba(227, 30, 36, 0.4);
+        margin: 0 0 var(--space-xl);
+      }
+
+      .event-date-lock {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1.1rem;
+        color: var(--text-main);
+        margin-bottom: var(--space-sm);
+      }
+
+      .follow-list,
+      .coming-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .follow-list li,
+      .coming-list li {
+        display: flex;
+        gap: 12px;
+        margin-bottom: var(--space-md);
+        color: var(--text-dim);
+        align-items: flex-start;
+      }
+
+      .follow-list span,
+      .coming-list span {
+        color: var(--accent-red);
+        font-family: 'JetBrains Mono', monospace;
+        min-width: 56px;
+      }
+
+      @media (max-width: 600px) {
+        .event-shell {
+          padding: 24px 18px;
+        }
+
+        .follow-list li,
+        .coming-list li {
+          gap: 10px;
+        }
+
+        .follow-list span,
+        .coming-list span {
+          min-width: 46px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-text"><span>I</span>nfiniware</a>
+      </div>
+      <div class="nav-extras">
+        <button class="theme-toggle-btn" aria-label="toggle theme"></button>
+        <button class="mobile-menu-btn" type="button" aria-label="open navigation" aria-expanded="false">☰</button>
+      </div>
+      <nav>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">home</a>
+          <a href="products.html" class="nav-link">products</a>
+          <a href="blog.html" class="nav-link">blog</a>
+          <a href="docs.html" class="nav-link">docs</a>
+          <a href="dashboard.html" class="nav-link">community</a>
+          <a href="connect.html" class="nav-link">connect</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="event-shell">
+        <hr class="event-divider" />
+        <h2 class="cursive-accent">human-made software for a noisy world</h2>
+        <div class="event-date-lock">may 21, 2026</div>
+        <h1>a day worth waiting for</h1>
+        <p style="max-width: 680px">
+          this is a public launch event. things go live at once, across the website and the places
+          around it, and the community will be the first to know when the switch is flipped.
+        </p>
+
+        <div class="detail-block">
+          <h3>where to follow</h3>
+          <ul class="follow-list">
+            <li><span>01.</span><a href="https://infiniware.bid/" class="inline-text-link" target="_blank" rel="noopener">infiniware.bid</a></li>
+            <li><span>02.</span><a href="https://github.com/lnfiniware" class="inline-text-link" target="_blank" rel="noopener">github discussions</a></li>
+            <li><span>03.</span><a href="https://discord.com/invite/raU9FB2aeb" class="inline-text-link" target="_blank" rel="noopener">discord server</a></li>
+            <li><span>04.</span><a href="https://mastodon.social/@Infiniware" class="inline-text-link" target="_blank" rel="noopener">mastodon</a></li>
+          </ul>
+        </div>
+
+        <div class="detail-block">
+          <h3>what's coming</h3>
+          <ul class="coming-list">
+            <li><span>01.</span>a tool built for precision</li>
+            <li><span>02.</span>a platform for connection</li>
+            <li><span>03.</span>a system built from the ground up</li>
+            <li><span>04.</span>more than one thing, arriving at once</li>
+          </ul>
+        </div>
+
+        <p class="text-dim">everything launches at once. no leaks. no previews. just may 21.</p>
+        <hr class="event-divider" style="margin-top: var(--space-xl)" />
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-text"><span>I</span>nfiniware</div>
+          <p class="text-dim" style="max-width: 250px; font-size: 0.85rem">
+            an independent ecosystem building tools with intention and structural focus.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>platform</h4>
+            <div class="footer-item"><a href="manifesto.html" class="footer-link">manifesto</a></div>
+            <div class="footer-item"><a href="faq.html" class="footer-link">faq</a></div>
+            <div class="footer-item"><a href="dashboard.html" class="footer-link">community hub</a></div>
+          </div>
+          <div class="footer-col">
+            <h4>legal</h4>
+            <div class="footer-item"><a href="privacy.html" class="footer-link">privacy policy</a></div>
+            <div class="footer-item"><a href="license.html" class="footer-link">license</a></div>
+          </div>
+          <div class="footer-col">
+            <h4>support</h4>
+            <div class="footer-item"><a href="mailto:support@infiniware.bid" class="footer-link">support@infiniware.bid</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>infiniware &copy; 2026</span>
+        <span>crafted by human hand</span>
+      </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
+
+

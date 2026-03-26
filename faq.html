@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,7 +15,7 @@
       </div>
       <div class="nav-extras">
         <button class="theme-toggle-btn" aria-label="toggle theme"></button>
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" type="button" aria-label="open navigation" aria-expanded="false">☰</button>
       </div>
       <nav>
         <div class="nav-links">
@@ -31,52 +31,43 @@
 
     <main class="container">
       <section>
-        <h2 class="cursive-accent">02 // faq</h2>
+        <h2 class="cursive-accent">human-made software for a noisy world</h2>
         <h1>frequently asked questions</h1>
 
         <div class="mt-xl">
           <div class="detail-block">
-            <h4>what defines the "infiniware" ecosystem?</h4>
-            <p>
-              infiniware is a focused hub hosting developer-centric products, technical logs (blog),
-              and a community space. it is designed as a calm, structured alternative to
-              traditional, noisy software platforms.
-            </p>
+            <h4>what is infiniware?</h4>
+            <p>infiniware is a small software ecosystem built around quiet interfaces, structural clarity, and privacy-first products. the website, the projects, and the community area are meant to feel like parts of one system.</p>
           </div>
 
           <div class="detail-block">
             <h4>why is the entire site lowercase?</h4>
-            <p>
-              typography is a structural tool for us. lowercase represents a quiet, non-aggressive
-              presence. the only exception is the red "I" in our logo, which serves as a single
-              point of engineered emphasis.
-            </p>
+            <p>lowercase is part of the voice. it keeps the tone quieter and less performative. the only deliberate exception is the red "I" in the wordmark.</p>
           </div>
 
           <div class="detail-block">
-            <h4>is al-muslim free and open?</h4>
-            <p>
-              yes. al-muslim is a service for the community, built with a strict privacy-first
-              approach. while the core application is free, we maintain high standards of
-              development and accuracy through the support of the infiniware community.
-            </p>
+            <h4>what is al-muslim?</h4>
+            <p>al-muslim is one of the current infiniware projects. the direction is consistent across releases: no ads, privacy first, and fast where it matters.</p>
           </div>
 
           <div class="detail-block">
-            <h4>how are prayer times and locations handled?</h4>
-            <p>
-              we prioritize local-first computation. your location is used directly on your device
-              using standard astronomical formulas to calculate prayer schedules. your coordinates
-              never leave your hardware.
-            </p>
+            <h4>is there a linux version?</h4>
+            <p>yes. al-muslim for linux is live as version 1.0v and includes a standalone qt desktop app plus a kde plasma widget. current public repo languages include qml, shell, c++, and cmake.</p>
           </div>
 
           <div class="detail-block">
-            <h4>can i contribute to the blog or community?</h4>
-            <p>
-              absolutely. you can authenticate via github to participate in the community feed. for
-              technical contributions or guest blog posts, please contact our support team.
-            </p>
+            <h4>where can i download it?</h4>
+            <p>the products page carries the current download action and source code links for public releases. the linux project currently links to the provided tar.gz artifact and the official github repository.</p>
+          </div>
+
+          <div class="detail-block">
+            <h4>does infiniware use ads or sell data?</h4>
+            <p>the current direction is no ads and no personal-data resale. the privacy policy page explains this in more detail, along with the limited data needed for account and community features.</p>
+          </div>
+
+          <div class="detail-block">
+            <h4>how can i get help or contact the project?</h4>
+            <p>use <a href="mailto:info@infiniware.bid" class="inline-text-link">info@infiniware.bid</a> for general contact and <a href="mailto:support@infiniware.bid" class="inline-text-link">support@infiniware.bid</a> for technical help. you can also follow the github, mastodon, and discord links in the footer.</p>
           </div>
         </div>
       </section>
@@ -121,11 +112,14 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>infiniware © 2026</span>
+        <span>infiniware &copy; 2026</span>
         <span>crafted by human hand</span>
       </div>
     </footer>
 
     <script type="module" src="script.js"></script>
-  </body>
+  
+</body>
 </html>
+
+
