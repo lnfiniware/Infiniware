@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "infiniware-guardian-server",
   "version": "1.0.0",
   "description": "Node.js Guardian Server for Infiniware Community",
@@ -13,9 +13,10 @@
     "server"
   ],
   "author": "Infiniware",
-  "license": "ISC",
+  "license": "GPL-3.0-only",
   "dependencies": {
     "firebase-admin": "^11.5.0",
     "fs-extra": "^11.1.0"
   }
 }
+

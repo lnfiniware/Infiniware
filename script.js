@@ -137,6 +137,10 @@ function initScrollReveals() {
   )
 
   revealTargets.forEach((el) => {
+    if (el.classList.contains('no-reveal')) {
+      return
+    }
+
     el.classList.add('reveal-ready')
     observer.observe(el)
   })
@@ -589,4 +593,6 @@ function initTheme() {
     console.warn('// infiniware system: theme initialization exception handled')
   }
 }
+
+
 
