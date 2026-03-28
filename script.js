@@ -158,7 +158,7 @@ function initFooterSocials() {
   const footer = document.querySelector('.footer')
   const footerBottom = document.querySelector('.footer-bottom')
 
-  if (!footer || !footerBottom || footer.querySelector('.footer-socials')) return
+  if (!footer || !footerBottom || footer.querySelector('.footer-socials-block')) return
 
   const socials = [
     {
@@ -169,7 +169,7 @@ function initFooterSocials() {
     {
       label: 'codeberg',
       href: 'https://codeberg.org/Infiniware',
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1A11 11 0 0 0 1 12a11 11 0 0 0 1.7 6.4L12 6l9.3 12.4A11 11 0 0 0 23 12 11 11 0 0 0 12 1Z"/><path fill="currentColor" opacity="0.45" d="M21.3 18.4 12 6l4.4 16.8a11 11 0 0 0 4.9-4.4Z" /></svg>`
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1A11 11 0 0 0 1 12a11 11 0 0 0 1.7 6.4L12 6l9.3 12.4A11 11 0 0 0 23 12 11 11 0 0 0 12 1Z"/><path fill="currentColor" opacity="0.45" d="M21.3 18.4 12 6l4.4 16.8a11 11 0 0 0 4.9-4.4Z"/></svg>`
     },
     {
       label: 'mastodon',
@@ -178,15 +178,21 @@ function initFooterSocials() {
     }
   ]
 
-  const row = document.createElement('div')
-  row.className = 'footer-socials'
-  row.innerHTML = socials
-    .map(
-      (social) => `<a class="footer-social-link" href="${social.href}" target="_blank" rel="noopener" aria-label="${social.label}">${social.svg}<span>${social.label}</span></a>`
-    )
-    .join('')
+  const block = document.createElement('div')
+  block.className = 'footer-socials-block'
+  block.innerHTML = `
+    <h4 class="footer-socials-title">socials</h4>
+    <div class="footer-socials">
+      ${socials
+        .map(
+          (social) =>
+            `<a class="footer-social-link" href="${social.href}" target="_blank" rel="noopener" aria-label="${social.label}">${social.svg}<span>${social.label}</span></a>`
+        )
+        .join('')}
+    </div>
+  `
 
-  footer.insertBefore(row, footerBottom)
+  footer.insertBefore(block, footerBottom)
 }
 
 function initEventCountdown() {
@@ -200,7 +206,9 @@ function initEventCountdown() {
   const daysRemaining = Math.max(0, Math.round((targetDate - startOfToday) / msPerDay))
 
   countdown.textContent =
-    daysRemaining === 0 ? 'today' : `${daysRemaining} day${daysRemaining === 1 ? '' : 's'} remaining`
+    daysRemaining === 0
+      ? 'today'
+      : `${daysRemaining} day${daysRemaining === 1 ? '' : 's'} remaining`
 }
 
 // --- Community Page Logic (Public Entrance) ---
@@ -593,6 +601,3 @@ function initTheme() {
     console.warn('// infiniware system: theme initialization exception handled')
   }
 }
-
-
-

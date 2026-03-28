@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+LICENSE
+*.png
+*.svg
+*.tar.gz
+*.bak
+robots.txt
+sitemap.xml

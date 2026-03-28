@@ -565,10 +565,21 @@ section {
   font-size: 0.75rem;
 }
 
-.footer-socials {
+.footer-socials-block {
   max-width: 1200px;
   margin: 0 auto;
   padding-top: var(--space-lg);
+}
+
+.footer-socials-title {
+  margin-bottom: var(--space-md);
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+}
+
+.footer-socials {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -590,7 +601,9 @@ section {
   width: 20px;
   height: 20px;
   fill: currentColor;
-  transition: color 0.2s ease, fill 0.2s ease;
+  transition:
+    color 0.2s ease,
+    fill 0.2s ease;
 }
 
 .footer-social-link:hover,
@@ -609,13 +622,6 @@ section {
 .footer-social-link:hover span,
 .footer-social-link:focus-visible span {
   color: var(--accent-red);
-}
-
-.hero-actions,
-.action-row {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
 }
 
 .btn-mark {
@@ -804,7 +810,9 @@ section {
   color: var(--text-main);
   text-decoration: none;
   border-bottom: 1px solid rgba(227, 30, 36, 0.35);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .inline-text-link:hover,
@@ -1855,6 +1863,3 @@ section {
    intended for future scalability. 
    infiniware is built to expand.
 */
-
-
-
